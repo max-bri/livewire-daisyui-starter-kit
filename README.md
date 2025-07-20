@@ -1,30 +1,71 @@
-# Laravel + Livewire Starter Kit
+### Description
+This starter kit jumpstarts your **Laravel 12** application using **Livewire 3** for reactive components and **daisyUI 5** (Tailwind CSS component library) for fast, consistent UI styling. It’s fully responsive out of the box, easily themeable, and purposely simplified: **Flux has been removed** to reduce overhead and keep the stack familiar. Ideal for SaaS dashboards, internal tools, and MVPs where you want clean structure, rapid iteration, and easy customization.
 
-## Introduction
 
-Our Laravel + [Livewire](https://livewire.laravel.com) starter kit provides a robust, modern starting point for building Laravel applications with a Livewire frontend.
+### Key Features
+* **Laravel + Livewire Core** – Server-driven reactive components without a heavy SPA framework.
+* **daisyUI v5 Integration** – Pre‑built Tailwind components + theme system (switch or extend themes quickly).
+* **No Flux Layer** – Reduced complexity; easier onboarding for any Laravel dev.
+* **Fully Responsive Layout** – Mobile-first navigation, adaptive panels, fluid typography.
+* **Authentication Ready** – Prewired auth & password reset flows.
+* **Production Friendly** – Ready for deployment.
 
-Livewire is a powerful way of building dynamic, reactive, frontend UIs using just PHP. It's a great fit for teams that primarily use Blade templates and are looking for a simpler alternative to JavaScript-driven SPA frameworks like React and Vue.
 
-This Livewire starter kit utilizes Livewire 3, Laravel Volt (optionally), TypeScript, Tailwind, and the [Flux UI](https://fluxui.dev) component library.
+### Getting Started
+**Clone:**
+```bash
+git clone https://github.com/max-bri/livewire-daisyui-starter-kit.git
+cd livewire-daisyui-starter-kit
+```
+**Install:**
+```bash
+cp .env.example .env
+composer install
+php artisan key:generate
+npm install
+```
+**Build:**
+```bash
+npm run dev   # or npm run build for production
+php artisan migrate --seed
+```
+**Run:**
+```bash
+php artisan serve
+```
+**Example output:**
+```bash
+INFO  Server running on [http://127.0.0.1:8000].
+Press Ctrl+C to stop the server
+```
 
-If you are looking for the alternate configurations of this starter kit, they can be found in the following branches:
 
-- [components](https://github.com/laravel/livewire-starter-kit/tree/components) - if Volt is not selected
-- [workos](https://github.com/laravel/livewire-starter-kit/tree/workos) - if WorkOS is selected for authentication
+### Customize Themes and browse pre-mande components
+Visit official [daisyUI Theme Generator](https://daisyui.com/theme-generator)
+Generate a new / modify existing theme and add the css to the bottom of the file:
+```bash
+resources/css/app.css
+```
+Also be sure to check out [All daisyUI components](https://daisyui.com/components)
 
-## Official Documentation
+All are free under MIT license.
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+[Official daisyUI Github Repository](https://github.com/saadeghi/daisyui)
 
-## Contributing
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Check official documantation and guides:
+[Laravel Docs](https://laravel.com/docs)
 
-## Code of Conduct
+[Laravel Livewire Docs](https://livewire.laravel.com/docs)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+[Laracast](https://laracasts.com/)
 
-## License
 
-The Laravel + Livewire starter kit is open-sourced software licensed under the MIT license.
+---
+
+
+### License
+
+MIT – use freely for personal & commercial projects.
+
+
