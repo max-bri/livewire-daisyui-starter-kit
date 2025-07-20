@@ -31,69 +31,50 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('dashboard', absolute: false), navigate: true);
     }
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
+    <x-auth-header title="Create an account" description="Enter your details below to create your account" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
-        <flux:input
-            wire:model="name"
-            :label="__('Name')"
-            type="text"
-            required
-            autofocus
-            autocomplete="name"
-            :placeholder="__('Full name')"
-        />
+        <label class="form-control w-full">
+            <span class="label label-text">{{ __('Name') }}</span>
+            <input wire:model="name" id="name" type="text" name="name" required autofocus autocomplete="name" placeholder="Full name" class="input input-bordered w-full" />
+        </label>
 
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
+        <label class="form-control w-full">
+            <span class="label label-text">{{ __('Email address') }}</span>
+            <input wire:model="email" id="email" type="email" name="email" required autocomplete="email" placeholder="email@example.com" class="input input-bordered w-full" />
+        </label>
 
         <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Password')"
-            viewable
-        />
+        <label class="form-control w-full">
+            <span class="label label-text">{{ __('Password') }}</span>
+            <input wire:model="password" id="password" type="password" name="password" required autocomplete="new-password" placeholder="Password" class="input input-bordered w-full" />
+        </label>
 
         <!-- Confirm Password -->
-        <flux:input
-            wire:model="password_confirmation"
-            :label="__('Confirm password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Confirm password')"
-            viewable
-        />
+        <label class="form-control w-full">
+            <span class="label label-text">{{ __('Confirm password') }}</span>
+            <input wire:model="password_confirmation" id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password" class="input input-bordered w-full" />
+        </label>
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <button type="submit" class="btn btn-primary w-full">
                 {{ __('Create account') }}
-            </flux:button>
+            </button>
         </div>
     </form>
 
-    <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-        <span>{{ __('Already have an account?') }}</span>
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+    <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
+        Already have an account?
+        <x-text-link href="{{ route('login') }}">Log in</x-text-link>
     </div>
 </div>

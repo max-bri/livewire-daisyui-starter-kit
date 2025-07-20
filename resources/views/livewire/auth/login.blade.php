@@ -3,7 +3,6 @@
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -74,54 +73,44 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+    <x-auth-header title="Log in to your account" description="Enter your email and password below to log in" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autofocus
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
+        <label class="form-control w-full">
+            <span class="label label-text">{{ __('Email address') }}</span>
+            <input wire:model="email" type="email" name="email" required autofocus autocomplete="email" placeholder="email@example.com" class="input input-bordered w-full" />
+        </label>
 
         <!-- Password -->
         <div class="relative">
-            <flux:input
-                wire:model="password"
-                :label="__('Password')"
-                type="password"
-                required
-                autocomplete="current-password"
-                :placeholder="__('Password')"
-                viewable
-            />
-
+            <label class="form-control w-full">
+                <span class="label label-text">{{ __('Password') }}</span>
+                <input wire:model="password" type="password" name="password" required autocomplete="current-password" placeholder="Password" class="input input-bordered w-full" />
+            </label>
             @if (Route::has('password.request'))
-                <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
+                <x-text-link class="absolute right-0 top-0" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
-                </flux:link>
+                </x-text-link>
             @endif
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <label class="cursor-pointer flex items-center gap-2">
+            <input wire:model="remember" type="checkbox" class="checkbox" />
+            <span class="label-text">{{ __('Remember me') }}</span>
+        </label>
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+            <button type="submit" class="btn btn-primary w-full">{{ __('Log in') }}</button>
         </div>
     </form>
 
-    @if (Route::has('register'))
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-            <span>{{ __('Don\'t have an account?') }}</span>
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
-        </div>
-    @endif
+    <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
+        Don't have an account?
+        <x-text-link href="{{ route('register') }}">Sign up</x-text-link>
+    </div>
 </div>
